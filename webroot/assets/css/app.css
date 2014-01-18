@@ -1,0 +1,57 @@
+.nav,
+.pagination,
+.carousel a {
+	cursor: pointer;
+}
+
+.fixed {
+	position: fixed;
+	margin: 0;
+}
+
+div.fixed {
+	overflow-y: auto;
+	height: 100%;
+	margin-left: -15px;
+}
+
+
+pre {
+	margin: 1ex 0;
+}
+
+form,
+ng-form {
+	border: 1px solid blue;
+	border-radius: 4px;
+	display: block;
+}
+
+
+legend {
+	font-weight: bold;
+}
+
+
+label,
+span,
+form > button,
+ng-form > button,
+form > input,
+ng-form > input {
+	width: 48%;
+	padding: 1ex 1em;
+}
+
+label > input,
+label > select,
+label > textarea {
+	float: right;
+	width: 60%;
+}
+
+label div > label {
+	display: block;
+	padding: 1ex;
+	width: 100%;
+}

@@ -1,0 +1,9 @@
+RewriteEngine on
+
+# RewriteCond %{HTTPS} off
+# RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+# RewriteRule (.*) https://%{HTTP_HOST}/$1 [R,L]
+
+RewriteCond $1 !^(index\.php|assets|sitemap\.xml|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /index.php/$1 [L]
