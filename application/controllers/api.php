@@ -55,7 +55,7 @@ class API extends CI_Controller
 				{
 					if (count($this->payload['data']) == 1 && isset($this->payload['data']['json']))
 					{
-						array_unshift($params, $this->payload['data']['json']);
+						array_unshift($params, json_decode($this->payload['data']['json'], true));
 					}
 					else
 					{
