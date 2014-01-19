@@ -20,13 +20,16 @@ pre {
 	margin: 1ex 0;
 }
 
-form,
-ng-form {
+form {
 	border: 1px solid blue;
 	border-radius: 4px;
-	display: block;
+	padding: 1ex;
+	margin: 1ex;
 }
 
+ng-form {
+	display: block;
+}
 
 legend {
 	font-weight: bold;

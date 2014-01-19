@@ -7,8 +7,7 @@
   </head>
   <body data-ng-controller="AppCtrl" data-ng-cloak="">
     <p>Exploratory interface, for now.</p>
-	<dynamic-form template="dataTemplate" data-ng-model="data" data-ng-submit="send()">
-		<button class="btn btn-primary">Send</button>
+	<form data-ng-submit="send()">
 		<legend>PVE2 API Explorer</legend>
 		<label>HTTP Method: 
 			<select data-ng-model="method">
@@ -21,7 +20,9 @@
 		<label>URI: 
 			<input type="text" data-ng-model="uri" data-ng-change="getTemplate()" autofocus="autofocus" />
 		</label>
-	</dynamic-form>
+		<dynamic-form template="dataTemplate" data-ng-model="data"></dynamic-form>
+		<button class="btn btn-primary">Send</button>
+	</form>
 	<pre>Response: {{response | pretty}}</pre>
 	<!-- Load scripts at the end for performance. -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>

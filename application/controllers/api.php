@@ -41,9 +41,9 @@ class API extends CI_Controller
 	{
 		$this->payload = json_decode(file_get_contents('php://input'), true);
 		
-		if ($method === 'ui')
+		if ($method === 'ui' || $method === 'index')
 		{
-			return call_user_func_array(array($this, $method), $params);
+			return call_user_func_array(array($this, 'ui'), $params);
 		}
 		
 		if (isset($this->payload['uri']))
