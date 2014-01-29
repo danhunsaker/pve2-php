@@ -38,9 +38,8 @@
 |
 */
 
-$route['default_controller'] = "api";
+$route['default_controller'] = "webui";
 $route['404_override'] = '';
-$route[''] = "api/ui";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

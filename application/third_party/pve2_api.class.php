@@ -45,7 +45,7 @@ class PVE2_API {
 		$this->pve_username = $pve_username;
 		$this->pve_realm = $pve_realm;
 		$this->pve_password = $pve_password;
-
+		
 		$this->print_debug = false;
 
 		# Default this to null, so we can check later on if were logged in or not.
@@ -102,14 +102,14 @@ class PVE2_API {
 
 		# Perform login request.
 		$prox_ch = curl_init();
-		curl_setopt($prox_ch, CURLOPT_URL, "https://".$this->pve_hostname.":8006/api2/json/access/ticket");
+		curl_setopt($prox_ch, CURLOPT_URL, "https://{$this->pve_hostname}:8006/api2/json/access/ticket");
 		curl_setopt($prox_ch, CURLOPT_POST, true);
 		curl_setopt($prox_ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($prox_ch, CURLOPT_POSTFIELDS, $login_postfields_string);
 		curl_setopt($prox_ch, CURLOPT_SSL_VERIFYPEER, false);
-
+		
 		$login_ticket = curl_exec($prox_ch);
-
+		
 		curl_close($prox_ch);
 		unset($prox_ch);
 		unset($login_postfields_string);
@@ -315,8 +315,9 @@ class PVE2_API {
 		}
 
 		$node_list = $this->pve_action("/nodes", "GET");
-		if (count($node_list) > 0) {
+		if (is_array($node_list) && count($node_list) > 0) {
 			$nodes_array = array();
+			// error_log(json_encode($node_list));
 			foreach ($node_list as $node) {
 				$nodes_array[] = $node['node'];
 			}
@@ -326,6 +327,7 @@ class PVE2_API {
 			if ($this->print_debug === true) {
 				print("Error - Empty list of nodes returned in this cluster.\n");
 			}
+			$this->pve_cluster_node_list = array();
 			return false;
 		}
 	}

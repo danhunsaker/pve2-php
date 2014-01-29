@@ -17,11 +17,11 @@ div.fixed {
 
 
 pre {
-	margin: 1ex 0;
+	margin: 1ex;
 }
 
 form {
-	border: 1px solid blue;
+	border: 1px solid #2a9fd6;
 	border-radius: 4px;
 	padding: 1ex;
 	margin: 1ex;
@@ -32,7 +32,7 @@ ng-form {
 }
 
 legend {
-	font-weight: bold;
+	/* font-weight: bold; */
 }
 
 
@@ -43,14 +43,14 @@ ng-form > button,
 form > input,
 ng-form > input {
 	width: 48%;
-	padding: 1ex 1em;
+	/* padding: 1ex 1em; */
 }
 
 label > input,
 label > select,
 label > textarea {
-	float: right;
-	width: 60%;
+	/* float: right; */
+	/* width: 60%; */
 }
 
 label div > label {
@@ -58,3 +58,57 @@ label div > label {
 	padding: 1ex;
 	width: 100%;
 }
+
+section#top {
+    height: 650px;
+}
+
+section > nav,
+section > div {
+    padding: 5px;
+    height: inherit;
+    display: inline-block;
+    vertical-align: top;
+    overflow: auto;
+}
+
+nav {
+	white-space: nowrap;
+	width: 33%;
+}
+
+.item-detail {
+    width: 66%;
+}
+
+.item-detail h2 {
+	margin-top: 0;
+	font-size: small;
+}
+
+.item-detail table {
+	width: 100%;
+}
+
+treecontrol li.tree-expanded i.tree-branch-head, treecontrol li.tree-collapsed i.tree-branch-head {display:inline-block;}
+treecontrol li.tree-expanded i.tree-leaf-head, treecontrol li.tree-collapsed i.tree-leaf-head {display:none;}
+treecontrol li.tree-leaf i.tree-branch-head {display:none;}
+treecontrol li.tree-leaf i.tree-leaf-head {display: inline-block;}
+
+treecontrol li .tree-selected {
+    font-weight: bold;
+}
+
+.up {
+	color: mediumseagreen;
+}
+
+.down {
+	color: crimson;
+}
+
+.muted {
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+

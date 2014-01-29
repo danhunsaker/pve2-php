@@ -1,6 +1,6 @@
 /**
 * DynamicForms - Build Forms in AngularJS From Nothing But JSON
-* @version v0.0.0 - 2013-09-24
+* @version v0.0.1 - 2014-01-19
 * @link http://bitbucket.org/danhunsaker/angular-dynamic-forms
 * @license LGPLv3+, http://www.gnu.org/licenses/lgpl-3.0.en.html
 */
@@ -8,7 +8,6 @@
 /**
 * Dynamically build an HTML form using a JSON object as a template.
 *
-* @todo Properly describe this directive.
 * @param {Object} [template] - The form template itself, as an object.
 * @param {string} [templateUrl] - The URL to retrieve the form template from; template overrides.
 * @param {mixed} ngModel - An object in the current scope where the form data should be stored.
