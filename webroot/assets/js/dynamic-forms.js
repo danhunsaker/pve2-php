@@ -135,9 +135,10 @@ angular.module('dynform', [])
                   if (angular.isDefined(field.options)) {
                     model[field.model] = {};
                     angular.forEach(field.options, function (option, childId) {
+                      childModel = angular.isDefined(option.model) ? option.model : childId;
                       newChild = angular.element('<input type="checkbox" />');
-                      newChild.attr('name', field.model + '.' + childId);
-                      newChild.attr('ng-model', attrs.ngModel + "['" + field.model + "']" + "['" + childId + "']");
+                      newChild.attr('name', field.model + '.' + childModel);
+                      newChild.attr('ng-model', attrs.ngModel + "['" + field.model + "']" + "['" + childModel + "']");
                       if (angular.isDefined(option['class'])) {newChild.attr('ng-class', option['class']);}
                       if (angular.isDefined(field.disabled)) {newChild.attr('ng-disabled', field.disabled);}
                       if (angular.isDefined(field.readonly)) {newChild.attr('ng-readonly', field.readonly);}
@@ -147,7 +148,7 @@ angular.module('dynform', [])
                       if (angular.isDefined(option.isOff)) {newChild.attr('ng-false-value', option.isOff);}
                       if (angular.isDefined(option.slaveTo)) {newChild.attr('ng-checked', option.slaveTo);}
                       if (angular.isDefined(option.val)) {
-                        model[field.model][childId] = angular.copy(option.val);
+                        model[field.model][childModel] = angular.copy(option.val);
                         newChlid.attr('value', field.val);
                       }
                       
@@ -163,6 +164,8 @@ angular.module('dynform', [])
                   if (angular.isDefined(field.val)) {model[field.model] = angular.copy(field.val);}
                   if (angular.isDefined(field.values)) {
                     angular.forEach(field.values, function (label, val) {
+                      var itemObj = angular.isObject(label) ? label : {'label': label};
+                      itemObj.val = angular.isDefined(itemObj.val) ? itemObj.val : val;
                       newChild = angular.element('<input type="radio" />');
                       newChild.attr('name', field.model);
                       newChild.attr('ng-model', attrs.ngModel + "['" + field.model + "']");
@@ -171,12 +174,12 @@ angular.module('dynform', [])
                       if (angular.isDefined(field.callback)) {newChild.attr('ng-change', field.callback);}
                       if (angular.isDefined(field.readonly)) {newChild.attr('ng-readonly', field.readonly);}
                       if (angular.isDefined(field.required)) {newChild.attr('ng-required', field.required);}
-                      newChild.attr('value', val);
-                      if (angular.isDefined(field.val) && field.val === val) {newChild.attr('checked', 'checked');}
+                      newChild.attr('value', itemObj.val);
+                      if (angular.isDefined(field.val) && field.val === itemObj.val) {newChild.attr('checked', 'checked');}
                       
-                      if (label) {
+                      if (itemObj.label) {
                           newChild = newChild.wrap('<label></label>').parent();
-                          newChild.append(document.createTextNode(' ' + label));
+                          newChild.append(document.createTextNode(' ' + itemObj.label));
                       }
                       newElement.append(newChild);
                     });
@@ -192,7 +195,7 @@ angular.module('dynform', [])
                   else if (angular.isDefined(field.options)) {
                     angular.forEach(field.options, function (option, childId) {
                       newChild = angular.element('<option></option>');
-                      newChild.attr('value', childId);
+                      newChild.attr('value', angular.isDefined(option.val) ? option.val : childId);
                       if (angular.isDefined(option.disabled)) {newChild.attr('ng-disabled', option.disabled);}
                       if (angular.isDefined(option.slaveTo)) {newChild.attr('ng-selected', option.slaveTo);}
                       if (angular.isDefined(option.label)) {newChild.html(option.label);}

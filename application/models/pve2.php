@@ -23,9 +23,9 @@ class PVE2 extends CI_Model
 		}
 	}
 	
-	public function get($host, $uri)
+	public function get($host, $uri, $data = array())
 	{
-		return $this->_pve2[$host]->get($uri);
+		return $this->_pve2[$host]->get($uri, $data);
 	}
 	
 	public function post($host, $uri, $data)

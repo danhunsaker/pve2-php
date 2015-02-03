@@ -5,7 +5,7 @@ angular.module('app', ['dynform', 'ui.bootstrap'])
         'json': {
           'type': 'textarea',
           'label': 'Data (JSON): ',
-          'disabled': '["post", "put"].indexOf(method) < 0',
+          'disabled': '["get", "post", "put"].indexOf(method) < 0',
           'class': '"form-control"'
         }
       };
@@ -75,7 +75,7 @@ angular.module('app', ['dynform', 'ui.bootstrap'])
               {
                 angular.forEach(data, function (field, id) {
                   if (!angular.isDefined(field.disabled)) {
-                    data[id].disabled = "['post', 'put'].indexOf(method) < 0";
+                    data[id].disabled = "['get', 'post', 'put'].indexOf(method) < 0";
                   }
                   if (!angular.isDefined(field.class)) {
                     data[id].class = "'form-control'";
@@ -89,14 +89,12 @@ angular.module('app', ['dynform', 'ui.bootstrap'])
               resetTemplate();
             });
         }
-        else {
-          if ([null,false].indexOf(data) > -1 || angular.equals(data.data, [])) {
-            resetTemplate();
-          }
-          else
-          {
-            $scope.dataTemplate = data.data;
-          }
+        else if (angular.equals(data.data, [])) {
+          resetTemplate();
+        }
+        else
+        {
+          $scope.dataTemplate = data.data;
         }
       }
     };
@@ -108,8 +106,12 @@ angular.module('app', ['dynform', 'ui.bootstrap'])
           },
           method = $scope.method;
       
-      if (["post", "put"].indexOf(method) > -1) {
-        payload.data = $scope.data;
+      if (["get", "post", "put"].indexOf(method) > -1) {
+        angular.forEach($scope.data, function(value, key) {
+          if (angular.isDefined(value) && value !== null && value !== '') {
+            this[key] = value;
+          }
+        }, (payload.data = {}));
       }
       
       $scope.working = true;

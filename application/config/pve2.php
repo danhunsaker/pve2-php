@@ -41,7 +41,30 @@ $config['uris'] = array(
 	'cluster/log' => (object)array(),
 	'cluster/nextid' => (object)array(),
 	'cluster/options' => array(),
-	'cluster/resources' => (object)array(),
+	'cluster/resources' => (object)array(
+		'type' => array(
+			'type' => 'select',
+			'label' => 'Filter By Resource Type: ',
+			'options' => array(
+				array(
+					'label' => '- Everything -',
+					'val' => ''
+				),
+				array(
+					'label' => 'Nodes',
+					'val' => 'node'
+				),
+				array(
+					'label' => 'Virtual Machines (VM/CT)',
+					'val' => 'vm'
+				),
+				array(
+					'label' => 'Storage',
+					'val' => 'storage'
+				),
+			),
+		),
+	),
 	'cluster/status' => (object)array(),
 	'cluster/tasks' => (object)array(),
 	'nodes' => (object)array(),
